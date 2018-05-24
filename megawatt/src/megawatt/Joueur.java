@@ -37,7 +37,71 @@ public class Joueur {
 	 * actualise l'argent du joueur en fonction des villes alimentées
 	 */
 	public void remunererJoueur(int nbreVillesAlimentees){
-		
+		switch(nbreVillesAlimentees){
+		case 0:
+			this.argent=this.argent+10;
+			break;
+		case 1:
+			this.argent=this.argent+22;
+			break;
+		case 2:
+			this.argent=this.argent+33;
+			break;
+		case 3: 
+			this.argent=this.argent+44;
+			break;
+		case 4:
+			this.argent=this.argent+54;
+			break;
+		case 5:
+			this.argent=this.argent+64;
+			break;
+		case 6:
+			this.argent=this.argent+73;
+			break;
+		case 7:
+			this.argent=this.argent+82;
+			break;
+		case 8:
+			this.argent=this.argent+90;
+			break;
+		case 9:
+			this.argent=this.argent+98;
+			break;
+		case 10:
+			this.argent=this.argent+105;
+			break;
+		case 11:
+			this.argent=this.argent+112;
+			break;
+		case 12:
+			this.argent=this.argent+118;
+			break;
+		case 13:
+			this.argent=this.argent+124;
+			break;
+		case 14:
+			this.argent=this.argent+129;
+			break;
+		case 15:
+			this.argent=this.argent+134;
+			break;
+		case 16:
+			this.argent=this.argent+138;
+			break;
+		case 17:
+			this.argent=this.argent+142;
+			break;
+		case 18:
+			this.argent=this.argent+145;
+			break;
+		case 19:
+			this.argent=this.argent+148;
+			break;
+		case 20:
+			this.argent=this.argent+150;
+			break;
+		}
 	}
 	public Color getCouleur() {
 		return couleur;
