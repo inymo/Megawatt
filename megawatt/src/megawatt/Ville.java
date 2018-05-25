@@ -5,18 +5,24 @@ import java.util.HashMap;
 
 public class Ville {
 	private String Nom;
-	private HashMap<String, Integer> adjacent;
+	private HashMap<Ville, Integer> adjacent;
 	private Integer[] espace={-1,-1,-1};
 	@Override
 	public String toString() {
-		return "Ville [Nom=" + Nom + ", adjacent=" + adjacent + ", espace=" + Arrays.toString(espace) + "]";
-	}
-	public Ville(String nom, HashMap<String, Integer> adjacent, Integer[] espace) {
+		return this.getNom();
+			}
+	public Ville(String nom, HashMap<Ville, Integer> adjacent, Integer[] espace) {
 		super();
 		Nom = nom;
 		this.adjacent = adjacent;
 		this.espace = espace;
 	}
+		public Ville(String nom) {
+		Nom = nom;
+		this.adjacent = new HashMap<Ville, Integer>();
+
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -55,9 +61,15 @@ public class Ville {
 	public void setNom(String nom) {
 		Nom = nom;
 	}
-	public HashMap<String, Integer> getAdjacent() {
+	public HashMap<Ville, Integer> getAdjacent() {
 		return adjacent;
 	}
+		public void ajouterVilleAdjacente(Ville u, int cout) {
+		this.adjacent.put(u, cout);
+		u.adjacent.put(this, cout);
+
+	}
+	
 	public void setAdjacent(HashMap<String, Integer> adjacent) {
 		this.adjacent = adjacent;
 	}
@@ -67,6 +79,17 @@ public class Ville {
 	public void setEspace(Integer[] espace) {
 		this.espace = espace;
 	}
-	
+		//////////
+	public boolean estAdjacent(Ville u) {
+		return this.adjacent.containsKey(u);
+	}
+
+	public int getCoutAdjacent(Ville u) {
+		if (this.estAdjacent(u)) {
+
+			return this.adjacent.get(u);
+		}
+		return -1;
+	}
 	
 }
