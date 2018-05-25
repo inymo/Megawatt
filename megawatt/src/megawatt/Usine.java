@@ -73,4 +73,21 @@ public class Usine {
 				+ ", villeAlimentable=" + villeAlimentable + ", couleurs=" + couleurs + "]";
 	}
 	
+	//fonction rajoutée par françois pour savoir si une usine est écologique
+	public boolean usine_ecologique(){
+		boolean ecologique=true;
+		for(int i=0;i<4;i++){
+			if(this.ressources[i]!=0) ecologique=false;
+		}
+		return ecologique;
+	}
+	//fonction rajoutée par françois pour savoir si une usine est hybride
+	public boolean usine_hybride(){
+		int hybride=0;
+		for(int i=0;i<4;i++){
+			if(this.ressources[i]!=0) hybride++;
+		}
+		return hybride>=2;
+	}
+	
 }
