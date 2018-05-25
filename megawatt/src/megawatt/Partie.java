@@ -1,15 +1,17 @@
 package megawatt;
 import java.math.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Partie {
-	private Joueur[] joueurs;
+private ArrayList<Joueur> joueurs;
 	private int[][] carte;// matrice des villes avec leurs interconnexions. 
 	private Ville[] villes;// INITIALISATION DES VILLES DU JEU.
 	private MarcheU marcheU;
 	private Ressources ressources;//ressources du marché.
 	private int nbreTours;//nombres de tours du jeu
 	
-	public Partie(Joueur[] joueurs, Ville[] villes, MarcheU marcheU, Ressources ressources) {
+	public Partie(ArrayList<Joueur> joueurs, Ville[] villes, MarcheU marcheU, Ressources ressources) {
 		super();
 		this.joueurs = joueurs;
 		this.carte = new int[][]{
@@ -99,19 +101,19 @@ public class Partie {
 	public void etape1(){
 		while(this.conditionEtape1()){
 			this.ordreDesJoueurs();
-			this.joueurs=this.marcheU.lancerEnchere(this.joueurs,1);
-			for(int i=this.joueurs.length-1;i>=0;i--){
-				this.ressources.acheterRessources(this.joueurs[i]);
+			this.joueurs=this.marcheU.lancerEnchere(this.joueurs,1,this.marcheU.getUsinesAchetables(1));
+			for(int i=this.joueurs.size()-1;i>=0;i--){
+				this.ressources.acheterRessources(this.joueurs.get(i));
 			}
-			for(int i=this.joueurs.length-1;i>=0;i--){
-				this.acheterVilles(this.joueurs[i],1);
+			for(int i=this.joueurs.size()-1;i>=0;i--){
+				this.acheterVilles(this.joueurs.get(i),1);
 			}
-			for(int i=this.joueurs.length-1;i>=0;i--){
-				int nbreVillesAlimentees=this.joueurs[i].choisirUsines();
+			for(int i=this.joueurs.size()-1;i>=0;i--){
+				int nbreVillesAlimentees=this.joueurs.get(i).choisirUsines();
 				//condition victoire!
-				this.joueurs[i].remunererJoueur(nbreVillesAlimentees);
+				this.joueurs.get(i).remunererJoueur(nbreVillesAlimentees);
 			}
-			this.ressources.reapprovisionnement(this.joueurs.length,1);
+			this.ressources.reapprovisionnement(this.joueurs.size(),1);
 			this.marcheU.actualiserMarcheEnchere();
 			nbreTours++;
 		}
