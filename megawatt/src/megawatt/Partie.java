@@ -9,6 +9,9 @@ public class Partie {
 	private Ressources ressources;//ressources du marché.
 	private int nbreTours;//nombres de tours du jeu
 	
+	private Carte cartedeG; //Guillaume 25/05/2018
+	
+	
 	public Partie(Joueur[] joueurs, Ville[] villes, MarcheU marcheU, Ressources ressources) {
 		super();
 		this.joueurs = joueurs;
@@ -68,6 +71,7 @@ public class Partie {
 		this.marcheU = marcheU;
 		this.ressources = ressources;
 		this.nbreTours=0;
+		this.cartedeG= new Carte(carte, villes);
 	}
 	public void symetrique(int[][] symetrique){
 		for(int i=0;i<49;i++){
@@ -113,8 +117,27 @@ public class Partie {
 	 * @param etape
 	 */
 	public void acheterVilles(Joueur j,int etape){
-		
+		Scanner sc=new Scanner(System.in);
+		System.out.println(this.villesString());
+		int nombre=sc.nextInt (); 
+		while(nombre != -1){
+			Ville v = this.villes[nombre];
+			boolean b = cartedeG.acheterVille(v, j, etape);
+			nombre=sc.nextInt (); 
+			if(!b){
+				//error, ville pas achetable dans ce cas
+			}
+		}
 	}
+		public String villesString(){
+		String re = "";
+		for(int i=0; i<this.villes.length; i++){
+			re+= " "+villes[i].getNom()+": "+i+" ";
+		}
+		return re;
+	}
+	
+	
 	public void etape1(){
 		while(this.conditionEtape1()){
 			this.ordreDesJoueurs();
