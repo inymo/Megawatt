@@ -212,7 +212,17 @@ public class Joueur {
 	 * @param usine
 	 */
 	public void ajouterUsine(Usine usine){
-		
+		if(this.usines.size()==3){
+			this.montrerUsines();
+			System.out.println("Trop d'usines: Choisir l'index de l'usine à supprimer:");
+			Scanner sc=new Scanner(System.in);
+			int choixUsine=sc.nextInt();
+			this.usines.remove(choixUsine);
+			this.usines.add(usine);
+		}
+		else{
+			this.usines.add(usine);
+		}
 	}
 	
 	
