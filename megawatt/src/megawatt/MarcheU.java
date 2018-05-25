@@ -14,10 +14,14 @@ public class MarcheU {
 	//problème : return une array list
 	//			Lorsqu'on choisi l'usine, on est obligé d'enchérie
 	//			Soit on saute le tours du joueur après nous, soit on est obligé de réencherir
-	public ArrayList<Joueur> lancerEnchere(ArrayList<Joueur> joueurs, int etape, ArrayList<Usine> usines) {
-		ArrayList<Joueur> joueurfin = joueurs; // liste de joueur a retourner et
+	public Joueur[] lancerEnchere(Joueur[] listejoueur, int etape, ArrayList<Usine> usines) {
+		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+		for(int i =0;i< listejoueur.length;i++){
+			joueurs.add(listejoueur[i]);
+		}
+		ArrayList<Joueur> joueurfin = (ArrayList<Joueur>) joueurs.clone(); // liste de joueur a retourner et
 												// donc update
-		ArrayList<Joueur> joueurencours = joueurs; // liste secondaire pour
+		ArrayList<Joueur> joueurencours = (ArrayList<Joueur>) joueurs.clone(); // liste secondaire pour
 													// permettre de savoir qui a
 													// une usine ou n'en veut
 													// pas
@@ -71,16 +75,21 @@ public class MarcheU {
 				System.out.println("te voila dépouillé de "+prix+" !!");
 				for(int i =0; i<joueurfin.size();i++){
 					if(joueurfin.get(i).getId() == enjeu.get(0).getId()){ // on cherche le joueur dans la liste final
+						//System.out.println(joueurfin.get(i).getUsines().size());
 						int argentfin = joueurfin.get(i).getArgent()-prix; // on lui retire le prix de l'usine
 						joueurfin.get(i).setArgent(argentfin); // on met a jours son argent
-						joueurfin.get(i).ajouterUsine(usineencours); // on lui ajoute l'usine
+						joueurfin.get(i).ajouterUsine(usineencours);// on lui ajoute l'usine
 						joueurencours.remove(joueurfin.get(i)); // on l'enleve de l'enchère generale
 						//ajouter enlever usine et atualiser marché
 					}
 				}
 			}
 		}
-		return joueurfin;
+		Joueur[] joueurfinal = new Joueur[joueurfin.size()];
+		for(int i = 0; i<joueurfin.size();i++){
+			joueurfinal[i] = joueurfin.get(i);
+		}
+		return joueurfinal;
 	}
 
 	/**
