@@ -62,20 +62,39 @@ public class Partie {
 			{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0, 9,-1,7}, //BOSTON
 			{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0, 5,7}, //MONTREAL
 			{-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1, 0,7}  //QUEBEC
-		}; // ATTENTION MATRICE NON SYMETRIQUE!!!!!!!François t'es nul
+		}; // ATTENTION:matrice (pas encore) symétrique
+		symetrique(this.carte);//on symétrise la carte
 		this.villes = villes;
 		this.marcheU = marcheU;
 		this.ressources = ressources;
 		this.nbreTours=0;
 	}
 	public void symetrique(int[][] symetrique){
-		
+		for(int i=0;i<49;i++){
+			for(int j=i+1;j<49;j++){
+				symetrique[j][i]=symetrique[i][j];
+			}
+		}
 	}
 	/**
 	 * permet d'actualiser l'ordre des joueurs à chaque tour en modifiant this.joueur.
 	 */
 	public void ordreDesJoueurs(){
-		//permet de réarranger l'ordre des joueurs en modifiant this.joueurs
+		for(int i=0;i<this.joueurs.length;i++){
+			for(int j=i+1;j<this.joueurs.length;i++){
+				if(this.joueurs[i].getNbrVilles()<this.joueurs[j].getNbrVilles()){
+					Joueur temp=this.joueurs[i];
+					this.joueurs[i]=this.joueurs[j];
+					this.joueurs[j]=temp;
+				}else if(this.joueurs[i].getNbrVilles()==this.joueurs[j].getNbrVilles()){
+					if(this.joueurs[i].valeurMaxUsines()<this.joueurs[j].valeurMaxUsines()){
+						Joueur temp=this.joueurs[i];
+						this.joueurs[i]=this.joueurs[j];
+						this.joueurs[j]=temp;
+					}
+				}
+			}
+		}
 	}
 	public void regenerationDesRessources(int[] reapprovisionnement){
 		
