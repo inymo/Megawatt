@@ -36,6 +36,7 @@ public class Joueur {
 	/**
 	 * actualise l'argent du joueur en fonction des villes alimentées
 	 */
+	//à supprimer
 	public void remunererJoueur(int nbreVillesAlimentees){
 		switch(nbreVillesAlimentees){
 		case 0:
