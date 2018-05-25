@@ -160,6 +160,16 @@ public class Joueur {
 	public void setVilles(List<Ville> villes) {
 		this.villes = villes;
 	}
+	///////Guillaume
+	public void addVilles(Ville v) {
+		this.villes.add(v);
+		this.nbrVilles++;
+	}
+	///////Guillaume
+	public void depenser(int cout) {
+		System.out.println(cout);
+		this.argent -= cout;
+	}
 
 	public int[] getRessources() {
 		return ressources;
