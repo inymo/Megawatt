@@ -20,7 +20,7 @@ public class Ressources extends Observable{
 	private int[] qte_max;  //quantité maximal qu'une ressource peut avoir sur le marché
 	
 	public Ressources(){
-		this.etat_actuel=new int[]{2,18,14,2};
+		this.etat_actuel=new int[]{23,18,14,2};
 		this.qte_max=new int[]{27,24,20,12};
 	}
 	
@@ -318,7 +318,7 @@ public class Ressources extends Observable{
 			for(int j=0;j<4;j++) System.out.print(type[j]+": "+joueur.getRessources()[j]+"  "); System.out.println();
 			System.out.println("Votre argent: "+joueur.getArgent());
 			System.out.println("Vos usines: ");
-			for(int j=0;j<joueur.getUsines().size();j++) joueur.getUsines().get(j).toString();
+			this.joueur.montrerUsines();
 			System.out.println();
 			System.out.println("Choisissez la quantité de "+type[i]+" que vous voulez acheter (tapez 0 si vous ne voulez pas acheter) :");
 			qte[i]=sc.nextInt();
