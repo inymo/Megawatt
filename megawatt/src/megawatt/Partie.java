@@ -85,7 +85,7 @@ public class Partie {
 	 */
 	public void ordreDesJoueurs(){
 		for(int i=0;i<this.joueurs.length;i++){
-			for(int j=i+1;j<this.joueurs.length;i++){
+			for(int j=i+1;j<this.joueurs.length;j++){
 				if(this.joueurs[i].getNbrVilles()<this.joueurs[j].getNbrVilles()){
 					Joueur temp=this.joueurs[i];
 					this.joueurs[i]=this.joueurs[j];
