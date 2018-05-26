@@ -73,7 +73,7 @@ public class Joueur {
 			}
 		}
 		
-		sc.close();
+		//sc.close();
 		return somme>this.nbrVilles?this.nbrVilles:somme; //faut se rappeler que le joueur ne peut pas alimenter plus de ville qu'il n'en possède
 	}
 	
