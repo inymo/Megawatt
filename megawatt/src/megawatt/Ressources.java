@@ -318,7 +318,7 @@ public class Ressources extends Observable{
 			for(int j=0;j<4;j++) System.out.print(type[j]+": "+joueur.getRessources()[j]+"  "); System.out.println();
 			System.out.println("Votre argent: "+joueur.getArgent());
 			System.out.println("Vos usines: ");
-			this.joueur.montrerUsines();
+			joueur.montrerUsines();
 			System.out.println();
 			System.out.println("Choisissez la quantité de "+type[i]+" que vous voulez acheter (tapez 0 si vous ne voulez pas acheter) :");
 			qte[i]=sc.nextInt();
