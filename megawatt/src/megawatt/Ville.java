@@ -70,9 +70,7 @@ public class Ville {
 
 	}
 	
-	public void setAdjacent(HashMap<String, Integer> adjacent) {
-		this.adjacent = adjacent;
-	}
+
 	public Integer[] getEspace() {
 		return espace;
 	}
