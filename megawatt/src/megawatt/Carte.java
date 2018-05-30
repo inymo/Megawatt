@@ -197,21 +197,7 @@ public class Carte {
 		return false;
 	}
 	
-	
-	public void acheterVilles(Joueur j,int etape){
-		Scanner sc=new Scanner(System.in);
-		System.out.println(this.villesString());
-		int nombre=sc.nextInt (); 
-		while(nombre != -1){
-			Ville v = this.listeDesVillesactuel.get(nombre);
-			boolean b = this.acheterVille(v, j, etape);
-			nombre=sc.nextInt (); 
-			if(!b){
-				//error, ville pas achetable dans ce cas
-			}
-		}
-		
-	}
+
 	/////////
 	public String villesString(){
 		String re = "";
