@@ -12,7 +12,7 @@ public class Joueur {
 	protected int nbrVilles;
 	protected List<Usine> usines;
 	private List<Ville> villes;
-	protected int[] ressources;
+	protected int[] ressources = {0, 0, 0, 0};
 	private Color couleur;
 	
 	public Joueur(int id, int argent, int nbrVilles, List<Usine> usines, List<Ville> villes, int[] ressources, Color couleur) {
@@ -25,6 +25,15 @@ public class Joueur {
 		this.ressources = ressources;
 		this.couleur=couleur;
 	}
+	
+		public Joueur(int id, Color couleur) {
+		this.id = id;
+		this.argent = 50;
+		this.usines = new ArrayList<Usine>();
+		this.villes =new ArrayList<Ville>();
+		this.couleur=couleur;
+	}
+	
 	/**
 	 * demande aux joueurs de selectionner les usines à activer( 
 	 * et demande les ressources necessaires en fonction des usines)
