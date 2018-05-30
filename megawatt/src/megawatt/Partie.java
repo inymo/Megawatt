@@ -170,6 +170,16 @@ public void acheterVilles(Joueur j,int etape){
 	
 	}
 	public boolean conditionEtape1(){
+		boolean etape = true;
+		for(int i=0;i<this.joueurs.length-1;i++){
+			if(this.joueurs[i].getVilles().size()==7){
+				etape=false;
+			}
+		}
+		return etape;
+	}
+	public boolean conditionEtape2(){
+		boolean etape = true;
 		return true;
 	}
 	
