@@ -116,17 +116,21 @@ public class Partie {
 	 * @param j
 	 * @param etape
 	 */
-	public void acheterVilles(Joueur j,int etape){
+public void acheterVilles(Joueur j,int etape){
+		System.out.println("achat des villes pour le joueur "+j.getId());
 		Scanner sc=new Scanner(System.in);
-		System.out.println(this.villesString());
+		System.out.println("les villes sont :"+this.villesString()+"/n quand vous voullez vous arretez rentrez -1");
 		int nombre=sc.nextInt (); 
 		while(nombre != -1){
 			Ville v = this.villes[nombre];
+			System.out.println(nombre+" "+v.getNom());
 			boolean b = cartedeG.acheterVille(v, j, etape);
-			nombre=sc.nextInt (); 
+			
 			if(!b){
+				System.out.println("il ne vous est pas possible d'acheter cette ville");
 				//error, ville pas achetable dans ce cas
 			}
+			nombre=sc.nextInt (); 
 		}
 	}
 		public String villesString(){
