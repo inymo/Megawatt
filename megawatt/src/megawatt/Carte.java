@@ -212,6 +212,10 @@ public class Carte {
 	private int plusCourtChemin(List<Ville> listVille, Ville ville) {
 		HashMap<Ville, Integer> listVilleparcouru = new HashMap<Ville, Integer>() ;
 		HashMap<Ville, Integer> adjacentes = initMapVille(listVille);
+		
+		if(listVille.isEmpty()){
+			return 0;
+		}
 
 		while( !(adjacentes.isEmpty())){
 			HashMap<Ville, Integer> adjacentes2 = boucle( adjacentes,  listVilleparcouru);
