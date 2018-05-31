@@ -121,7 +121,7 @@ public class Partie {
 public void acheterVilles(Joueur j,int etape){
 		System.out.println("achat des villes pour le joueur "+j.getId());
 		Scanner sc=new Scanner(System.in);
-		System.out.println("les villes sont :"+this.villesString()+"/n quand vous voullez vous arretez rentrez -1");
+		System.out.println("les villes sont :"+this.villesString()+"\n quand vous voullez vous arretez rentrez -1");
 		int nombre=sc.nextInt (); 
 		while(nombre != -1){
 			Ville v = this.villes[nombre];
@@ -138,6 +138,9 @@ public void acheterVilles(Joueur j,int etape){
 		public String villesString(){
 		String re = "";
 		for(int i=0; i<this.villes.length; i++){
+			if(i%8==0){
+				re+= "\n \n";
+			}
 			re+= " "+villes[i].getNom()+": "+i+" ";
 		}
 		return re;
