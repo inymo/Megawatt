@@ -57,7 +57,7 @@ public class Carte {
 		String[] listI;
 		String ligneNonDecoupe;
 		try {
-			BufferedReader f = new BufferedReader(new FileReader("graphDeVille.txt"));
+			BufferedReader f = new BufferedReader(new FileReader("graphVilleA.txt"));
 			ligneNonDecoupe = f.readLine();
 			while (ligneNonDecoupe != null) {
 
