@@ -10,8 +10,8 @@ public class MarcheU {
 	private ArrayList<Usine> pioche;
 	private ArrayList<Usine> usinesDispo;
 
-	public MarcheU(ArrayList<Usine> usinesDispo){
-		this.usinesDispo=usinesDispo;
+	public MarcheU(){
+
 		//initialisation de pioche
 		Usine usine1  =new Usine(new int[]{2,0,0,0}, 3,1,0);
 		Usine usine2  =new Usine(new int[]{2,0,0,0}, 4,1,0);
@@ -100,12 +100,19 @@ public class MarcheU {
 		this.pioche.add(usine41);
 		this.pioche.add(usine42);
 		this.pioche.add(etape3);
+		
+		this.usinesDispo = new ArrayList<Usine>();
+		this.usinesDispo.add(usine1);
+		this.usinesDispo.add(usine2);
+		this.usinesDispo.add(usine3);
+		this.usinesDispo.add(usine4);
+		
 	}
 	
 	//problème : return une array list
 	//			Lorsqu'on choisi l'usine, on est obligé d'enchérie
 	//			Soit on saute le tours du joueur après nous, soit on est obligé de réencherir
-	public Joueur[] lancerEnchere(Joueur[] listejoueur, int etape, ArrayList<Usine> usines) {
+	public Joueur[] lancerEnchere(Joueur[] listejoueur, int etape) {
 		ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
 		for(int i =0;i< listejoueur.length;i++){
 			joueurs.add(listejoueur[i]);
@@ -120,7 +127,7 @@ public class MarcheU {
 		while (!joueurencours.isEmpty()) { // début des enchere avec choix de
 											// l'usine
 
-			Usine usineencours = this.choixUsine(joueurencours.get(0), usines); // le
+			Usine usineencours = this.choixUsine(joueurencours.get(0)); // le
 																			// premier
 																			// joueur
 																			// choisie
@@ -170,6 +177,8 @@ public class MarcheU {
 						int argentfin = joueurfin.get(i).getArgent()-prix; // on lui retire le prix de l'usine
 						joueurfin.get(i).setArgent(argentfin); // on met a jours son argent
 						joueurfin.get(i).ajouterUsine(usineencours);// on lui ajoute l'usine
+						this.enleverUsine(usineencours);
+						this.actualiserMarcheEnchere();
 						joueurencours.remove(joueurfin.get(i)); // on l'enleve de l'enchère generale
 						//ajouter enlever usine et atualiser marché
 					}
@@ -189,10 +198,10 @@ public class MarcheU {
 	 * @param etape
 	 */
 	public void actualiserMarcheEnchere() {
-		int place = this.usinesDispo.size()-1;;
+		int place = this.usinesDispo.size()-1;
 		for(int i = 0; i<this.usinesDispo.size();i++){
 			if(this.usinesDispo.get(i).getPrixInitial() > this.pioche.get(0).getPrixInitial() ){
-				place = i-1;
+				place = i;
 				break;
 			}
 		}
@@ -212,7 +221,7 @@ public class MarcheU {
 	}
 
 	public ArrayList<Usine> getUsinesAchetables(int etape) {
-		return null;
+		return this.usinesDispo;
 	}
 
 	/**
@@ -223,14 +232,14 @@ public class MarcheU {
 	 * @param usines
 	 * @return
 	 */
-	public Usine choixUsine(Joueur joueur, ArrayList<Usine> usines) {
+	public Usine choixUsine(Joueur joueur) {
 		Usine usinechoisie = null;
 		System.out.println("c'est au joueur " + joueur.getId() + " de jouer");
 		System.out.println("Choisissez une usine a mettre en enchere parmis les suivante :");
-		System.out.println("Usine 1 : " + usines.get(0).toString());
-		System.out.println("Usine 2 : " + usines.get(1).toString());
-		System.out.println("Usine 3 : " + usines.get(2).toString());
-		System.out.println("Usine 4 : " + usines.get(3).toString());
+		System.out.println("Usine 1 : " + this.usinesDispo.get(0).toString());
+		System.out.println("Usine 2 : " + this.usinesDispo.get(1).toString());
+		System.out.println("Usine 3 : " + this.usinesDispo.get(2).toString());
+		System.out.println("Usine 4 : " + this.usinesDispo.get(3).toString());
 		System.out.println("Tapez 1,2,3 ou 4 pour choisir une Usine ou 0 pour passer");
 
 		boolean choix = true;
@@ -242,7 +251,7 @@ public class MarcheU {
 				nb = sc.nextInt(); // pour demander un int
 			} else {
 				if (nb != 0) {
-					usinechoisie = usines.get(nb - 1);
+					usinechoisie = this.usinesDispo.get(nb - 1);
 				}
 				choix = false;
 			}
