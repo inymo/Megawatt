@@ -23,15 +23,7 @@ public class Ville {
 
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Nom == null) ? 0 : Nom.hashCode());
-		result = prime * result + ((adjacent == null) ? 0 : adjacent.hashCode());
-		result = prime * result + Arrays.hashCode(espace);
-		return result;
-	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
