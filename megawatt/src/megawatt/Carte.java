@@ -168,7 +168,7 @@ public class Carte {
 		while (estOccupe(i, v)) {
 			i++;
 		}
-		if(i<=etape){
+		if(i<etape){
 		return (i + 2) * 5;
 		} else
 		return -1;
