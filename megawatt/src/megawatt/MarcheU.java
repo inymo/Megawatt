@@ -55,6 +55,7 @@ public class MarcheU {
 		Usine usine40 =new Usine(new int[]{0,0,0,0},44,6,0);
 		Usine usine41 =new Usine(new int[]{0,2,0,0},46,7,0);
 		Usine usine42 =new Usine(new int[]{0,0,0,2},50,7,0);
+		Usine etape3  =new Usine(new int[]{0,0,0,0},100,0,0);
 		this.pioche=new ArrayList<Usine>();
 		this.pioche.add(usine1);
 		this.pioche.add(usine2);
@@ -98,6 +99,7 @@ public class MarcheU {
 		this.pioche.add(usine40);
 		this.pioche.add(usine41);
 		this.pioche.add(usine42);
+		this.pioche.add(etape3);
 	}
 	
 	//problème : return une array list
@@ -258,4 +260,30 @@ public class MarcheU {
 	public void enleverUsine(Usine usine) {
 		this.usinesDispo.remove(usine);
 	}
+	
+	/**
+	 * La fonction va retirer une seule fois de la partie la plus petite centrale
+	 * du marché et la remplacer par une nouvelle tirée dans la pioche
+	 */
+	//ajouté par françois
+	public void transition_etape1_etape2(){
+		//on retire la plus petite usine du marché qui est censée être en dernière position de usines_dispo
+		this.usinesDispo.remove(this.usinesDispo.size()-1);
+		//on tire une nouvelle carte qu'on actualise dans le marché
+		this.actualiserMarcheEnchere();
+	}
+	
+	/*
+	 * 
+	 */
+	//ajouté par françois
+	public  void transition_etape2_etape3(){
+		//On retire du marché la carte "étape 3" qui est considérée comme la plus forte ainsi que la centrale la plus faible
+		//la place respective de ces cartes est la première et dernière position de la liste usines_dispo
+		this.usinesDispo.remove(0);
+		this.usinesDispo.remove(this.usinesDispo.size()-1);
+		
+		//on note qu'on ne tire pas de nouvelles cartes. Le marché des usines est dorénavant 6.
+	}
+	
 }
